@@ -1,7 +1,7 @@
 #include <application.h>
 
 #include "SunRiseLamp.h"
-#include "neopixel.h"
+#include "neopixel/neopixel.h"
 
 void SunRiseLamp::begin(int totalTime, int pixelCount, int pixelPin, int pixelType)
 {

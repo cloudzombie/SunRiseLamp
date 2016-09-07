@@ -2,8 +2,7 @@
 #define SunRiseLamp_h
 
 #include "application.h"
-#include "neopixel.h"
-
+#include "neopixel/neopixel.h"
 
 const unsigned int colors[] =
 {

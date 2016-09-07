@@ -4,7 +4,7 @@
 // Created by Jean-Pierre Figaredo
 
 #include "application.h"
-#include "neopixel.h"
+#include "neopixel/neopixel.h"
 #include "SunRiseLamp.h"
 
 SYSTEM_MODE(AUTOMATIC);
@@ -16,7 +16,7 @@ SYSTEM_THREAD(ENABLED);
 #define PIXEL_TYPE WS2812B     //<<<<<<<<<<< check here
 #define PIXEL_BRIGHTNESS 100
 
-#define SUN_RISE_HOUR 6
+#define SUN_RISE_HOUR 15
 #define SUN_SET_HOUR 7
 
 #define Sun_RISE_LENGTH_IN_SEC 300  // Set this for how many seconds you wish to take to rise or set
@@ -24,15 +24,15 @@ SYSTEM_THREAD(ENABLED);
 SunRiseLamp sunriseLeds;
 int lastHour = 24;
 
-DailyTimer weekdayTimer(6, 15, 6, 30, WEEKDAYS);  //(startHour, startMinute, endHour, endMinute, DayOfWeek)
+DailyTimer weekdayTimer(7, 01, 7, 30, WEEKDAYS);  //(startHour, startMinute, endHour, endMinute, DayOfWeek)
 DailyTimer weekendTimer(7, 30, 19, 30, WEEKENDS);
 
 void setup()
 {
   Particle.function("test", testSunMachine);
   Serial.begin(9600);
-  Particle.syncTime();
   Time.zone(-7);
+  Particle.syncTime();
   weekendTimer.begin();
   weekdayTimer.begin();
   sunriseLeds.begin(Sun_RISE_LENGTH_IN_SEC, PIXEL_COUNT, PIXEL_PIN, PIXEL_TYPE);

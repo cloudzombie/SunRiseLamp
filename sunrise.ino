@@ -12,19 +12,19 @@ SYSTEM_THREAD(ENABLED);
 
 // IMPORTANT: Set pixel COUNT, PIN and TYPE
 #define PIXEL_PIN D6
-#define PIXEL_COUNT 24          //<<<<<<<<<<< check here
+#define PIXEL_COUNT 24         //<<<<<<<<<<< check here
 #define PIXEL_TYPE WS2812B     //<<<<<<<<<<< check here
 #define PIXEL_BRIGHTNESS 100
 
 //#define SUN_RISE_HOUR 15
 //#define SUN_SET_HOUR 0
 
-#define Sun_RISE_LENGTH_IN_SEC 300  // Set this for how many seconds you wish to take to rise or set
+#define Sun_RISE_LENGTH_IN_SEC 300   // Set this for how many seconds you wish to take to rise or set
 
 SunRiseLamp sunriseLeds;
 int lastHour = 24;
 
-DailyTimer weekdayTimer(0, 41, 0, 46, WEEKDAYS);  //(startHour, startMinute, endHour, endMinute, DayOfWeek)
+DailyTimer weekdayTimer(6, 30, 6, 40, WEEKDAYS);  //(startHour, startMinute, endHour, endMinute, DayOfWeek)
 DailyTimer weekendTimer(7, 30, 19, 30, WEEKENDS);
 
 void setup()

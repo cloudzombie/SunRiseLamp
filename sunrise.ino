@@ -1,11 +1,11 @@
 // This #include statement was automatically added by the Particle IDE.
-#include "DailyTimer.h"
+#include "Libraries/DailyTimer.h"
 
 // Created by Jean-Pierre Figaredo
 
 #include "application.h"
-#include "neopixel/neopixel.h"
-#include "SunRiseLamp.h"
+#include "Libraries/neopixel.h"
+#include "SunRiseLamp/SunRiseLamp.h"
 
 SYSTEM_MODE(AUTOMATIC);
 SYSTEM_THREAD(ENABLED);
@@ -16,15 +16,15 @@ SYSTEM_THREAD(ENABLED);
 #define PIXEL_TYPE WS2812B     //<<<<<<<<<<< check here
 #define PIXEL_BRIGHTNESS 100
 
-#define SUN_RISE_HOUR 15
-#define SUN_SET_HOUR 7
+//#define SUN_RISE_HOUR 15
+//#define SUN_SET_HOUR 0
 
 #define Sun_RISE_LENGTH_IN_SEC 300  // Set this for how many seconds you wish to take to rise or set
 
 SunRiseLamp sunriseLeds;
 int lastHour = 24;
 
-DailyTimer weekdayTimer(7, 01, 7, 30, WEEKDAYS);  //(startHour, startMinute, endHour, endMinute, DayOfWeek)
+DailyTimer weekdayTimer(0, 41, 0, 46, WEEKDAYS);  //(startHour, startMinute, endHour, endMinute, DayOfWeek)
 DailyTimer weekendTimer(7, 30, 19, 30, WEEKENDS);
 
 void setup()
@@ -42,16 +42,14 @@ void setup()
 void loop()
 {
   sunriseLeds.update();
-  int currentHour = Time.hour();
-  if (currentHour == SUN_RISE_HOUR && currentHour != lastHour)
+  if(weekdayTimer.startTrigger() || weekendTimer.startTrigger())
   {
     sunriseLeds.rise();
   }
-  else if (Time.hour() == SUN_SET_HOUR && currentHour != lastHour)
+  if(weekdayTimer.endTrigger() || weekendTimer.endTrigger())
   {
     sunriseLeds.set();
   }
-  lastHour = currentHour;
 }
 
 int testSunMachine(const char* data)

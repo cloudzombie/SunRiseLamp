@@ -24,7 +24,7 @@ SYSTEM_THREAD(ENABLED);
 SunRiseLamp sunriseLeds;
 int lastHour = 24;
 
-DailyTimer weekdayTimer(6, 30, 6, 40, WEEKDAYS);  //(startHour, startMinute, endHour, endMinute, DayOfWeek)
+DailyTimer weekdayTimer(4, 50, 5, 45, WEEKDAYS);  //(startHour, startMinute, endHour, endMinute, DayOfWeek)
 DailyTimer weekendTimer(7, 30, 19, 30, WEEKENDS);
 
 void setup()
